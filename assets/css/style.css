@@ -1,0 +1,36 @@
+/* @font-face → Definiert eine benutzerdefinierte Schriftart. */
+@font-face {
+    font-family: 'OpenSans';
+    font-style: normal;
+    font-weight: 100 900;
+    /* font-weight: 100 900; → Variable Font: Unterstützt Schriftgewichte */
+    src: url('../fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.eot');
+    /* eot (Embedded OpenType) ist ein veraltetes Format, das nur vom Internet Explorer (IE ≤ 8) benötigt wird. */
+    src:url('../fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.eot?#iefix') format('embedded-opentype'),
+    /* Der Teil ?#iefix ist ein Trick für Internet Explorer 9+, damit er die Schrift richtig lädt. */
+    url('../fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.woff2') format('woff2'),
+    /* woff2 Modernste Version, sehr klein & schnell (Chrome, Firefox, Edge, Safari). */
+    url('../fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.woff') format('woff'),
+    /* woff Älteres Format, aber immer noch weit verbreitet. */
+    url('../fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
+    /* ttf → Fallback für alte Browser & mobile Geräte. */
+    font-display: swap;
+    /* Verhindert "Flash of Invisible Text" (FOIT) // Falls die Schrift nicht sofort geladen wird, zeigt der Browser eine Ersatzschrift an. // Sobald die Schrift geladen ist, wird sie ersetzt. */
+}
+
+@font-face {
+    font-family: 'OpenSans';
+    font-style: italic;
+    font-weight: 100 900;
+    src: url('../fonts/Open_Sans/OpenSans-Italic-VariableFont_wdth,wght.eot');
+
+    src:url('../fonts/Open_Sans/OpenSans-Italic-VariableFont_wdth,wght.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Open_Sans/OpenSans-Italic-VariableFont_wdth,wght.woff2') format('woff2'),
+    url('../fonts/Open_Sans/OpenSans-Italic-VariableFont_wdth,wght.woff') format('woff'),
+    url('../fonts/Open_Sans/OpenSans-Italic-VariableFont_wdth,wght.ttf') format('truetype');
+    font-display: swap;
+}
+
+body{
+    font-family: 'OpenSans', 'Segoe UI', sans-serif ;
+}
