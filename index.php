@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    <!-- div wrapper -->
     <div class="container py-3">
         <!-- header -->
         <?php
@@ -26,9 +27,9 @@
             <!-- section content -->
             <section class="mt-4">
                 <div class="row">
-                    
-                     <!-- sidebar -->
-                     <?php
+
+                    <!-- sidebar -->
+                    <?php
                     include "./include/layout/sidebar.php"
                     ?>
 
@@ -49,11 +50,11 @@
                                             </div>
                                         </div>
                                         <p class="card-text text-secondary pt-3">
-                                           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum vitae ipsam nihil unde libero nobis? Totam rem enim vero dolore recusandae dolorem similique quam in dignissimos? Suscipit ut, perferendis quo maiores totam harum temporibus libero nemo ullam illum, eum ipsa?
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum vitae ipsam nihil unde libero nobis? Totam rem enim vero dolore recusandae dolorem similique quam in dignissimos? Suscipit ut, perferendis quo maiores totam harum temporibus libero nemo ullam illum, eum ipsa?
                                         </p>
                                         <div
                                             class="d-flex justify-content-between align-items-center">
-                                            <p class="fs-7 mb-0">Author: Ali Hossaini</p>
+                                            <p class="fs-7 mb-0">Author: Max Hiry</p>
                                             <a href="single.html" class="btn btn-sm btn-dark">More</a>
                                         </div>
                                     </div>
@@ -73,11 +74,11 @@
                                             </div>
                                         </div>
                                         <p class="card-text text-secondary pt-3">
-                                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat, quasi!  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum vitae ipsam nihil unde libero nobis? Totam rem enim vero dolore recusandae dolorem similique quam in dignissimos? Suscipit ut, perferendis quo maiores totam harum temporibus libero nemo ullam illum, eum ipsa?
+                                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat, quasi! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum vitae ipsam nihil unde libero nobis? Totam rem enim vero dolore recusandae dolorem similique quam in dignissimos? Suscipit ut, perferendis quo maiores totam harum temporibus libero nemo ullam illum, eum ipsa?
                                         </p>
                                         <div
                                             class="d-flex justify-content-between align-items-center">
-                                            <p class="fs-7 mb-0">Author: Ali Hossaini</p>
+                                            <p class="fs-7 mb-0">Author: Tom Kay</p>
                                             <a href="single.html" class="btn btn-sm btn-dark">More</a>
                                         </div>
                                     </div>
@@ -97,11 +98,11 @@
                                             </div>
                                         </div>
                                         <p class="card-text text-secondary pt-3">
-                                           Lorem ipsum dolor sit amet, perferendis quo maiores totam harum temporibus libero nemo ullam illum, eum ipsa?
+                                            Lorem ipsum dolor sit amet, perferendis quo maiores totam harum temporibus libero nemo ullam illum, eum ipsa?
                                         </p>
                                         <div
                                             class="d-flex justify-content-between align-items-center">
-                                            <p class="fs-7 mb-0">Author: Ali Hossaini</p>
+                                            <p class="fs-7 mb-0">Author: Jorg Samsi</p>
                                             <a href="single.html" class="btn btn-sm btn-dark">More</a>
                                         </div>
                                     </div>
