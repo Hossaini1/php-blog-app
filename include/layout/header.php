@@ -20,8 +20,6 @@ $categories = $db->query("SELECT * FROM `categories`");
 
 ?>
 
-
-
 <header class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
     <a href="index.php" class="fs-4 fw-medium link-body-emphasis text-decoration-none">Blog-App</a>
 
@@ -30,10 +28,13 @@ $categories = $db->query("SELECT * FROM `categories`");
         <?php if ($categories->rowCount() > 0): ?>
 
             <?php foreach ($categories as $category) : ?>
-                <a href="#" class="fw-bold ms-3 link-body-emphasis text-decoration-none"><?= $category['title'] ?></a>
+                <a href="index.php?category=<?= $category['id'] ?>" class="ms-3 link-body-emphasis text-decoration-none <?= (isset($_GET['category'])) && $category['id'] == $_GET['category'] ? 'fw-bold': '' ?> "><?= $category['title'] ?></a>
+
+                <!-- < ?php echo "link for {$category['title']}: index,php?category={$category['id']}<br> " ?> -->
             <?php endforeach ?>
 
         <?php endif ?>
 
     </nav>
 </header>
+         

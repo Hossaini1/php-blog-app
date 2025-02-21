@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,8 +29,17 @@
             <?php
             include "./include/layout/slider.php";
 
-            $posts = $db->query("SELECT * FROM `posts` ORDER BY id DESC");
+            if(isset($_GET['category'])){
+                $categoryId = $_GET['category'];
+                $posts = $db->prepare("SELECT * FROM `posts` WHERE category_id = :id ORDER BY id DESC ");
+                $posts->execute(['id' => $categoryId]);
 
+            } else {
+            
+                $posts = $db->query("SELECT * FROM `posts` ORDER BY id DESC");
+            }
+            
+            
             // echo "<pre >";
             // print_r($posts->fetchAll())
             ?>
@@ -55,7 +67,7 @@
                                     ?>
 
                         <div class="col-sm-6">
-                            <div class="card">
+                            <div class="card"> 
                                 <img
                                     src="./uploads/posts/<?= $post["image"] ?>"
                                     class="card-img-top"
