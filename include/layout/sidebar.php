@@ -13,9 +13,10 @@ $categories = $db->query("SELECT * FROM `categories`");
   <div class="card">
     <div class="card-body">
       <p class="fw-bold fs-6">Search blog</p>
-      <form action="search.html">
+      <form action="search.php" method="GET">
         <div class="input-group mb-3">
           <input
+          name="search"
             type="text"
             class="form-control"
             placeholder="search ..." />
