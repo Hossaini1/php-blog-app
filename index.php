@@ -70,7 +70,7 @@
                                     <div
                                         class="d-flex justify-content-between align-items-center">
                                         <p class="fs-7 mb-0">Author: <?= $post['author'] ?></p>
-                                        <a href="single.html" class="btn btn-sm btn-dark">More</a>
+                                        <a href="single.php?post=<?= $post['id'] ?>" class="btn btn-sm btn-dark">More</a>
                                     </div>
                                 </div>
                             </div>

@@ -36,37 +36,37 @@
                                  All posts with keyword [ <?= $_GET['search'] ?> ]
                              </div>
                              <div class="row g-3">
-                                <?php foreach($posts as $post) : ?>
-                                    <?php 
+                                 <?php foreach ($posts as $post) : ?>
+                                     <?php
                                         $categoryId = $post['category_id'];
                                         $postCategory = $db->query("SELECT * FROM `categories` WHERE id = $categoryId")->fetchAll();
                                         ?>
 
-                                 <div class="col-sm-6">
-                                 <div class="card"> 
-                                <img
-                                    src="./uploads/posts/<?= $post["image"] ?>"
-                                    class="card-img-top"
-                                    alt="post-image" />
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between">
-                                        <h5 class="card-title fw-bold"><?= $post["title"]?></h5>
-                                        <div>
-                                            <span class="badge bg-primary"><?= $category['title'] ?></span>
-                                        </div>
-                                    </div>
-                                    <p class="card-text text-secondary pt-3">
-                                      <?= substr($post['body'], 0, 200) . "..." ?>
-                                    </p>
-                                    <div
-                                        class="d-flex justify-content-between align-items-center">
-                                        <p class="fs-7 mb-0">Author: <?= $post['author'] ?></p>
-                                        <a href="single.html" class="btn btn-sm btn-dark">More</a>
-                                    </div>
-                                </div>
-                            </div>
+                                     <div class="col-sm-6">
+                                         <div class="card">
+                                             <img
+                                                 src="./uploads/posts/<?= $post["image"] ?>"
+                                                 class="card-img-top"
+                                                 alt="post-image" />
+                                             <div class="card-body">
+                                                 <div class="d-flex justify-content-between">
+                                                     <h5 class="card-title fw-bold"><?= $post["title"] ?></h5>
+                                                     <div>
+                                                         <span class="badge bg-primary"><?= $category['title'] ?></span>
+                                                     </div>
+                                                 </div>
+                                                 <p class="card-text text-secondary pt-3">
+                                                     <?= substr($post['body'], 0, 200) . "..." ?>
+                                                 </p>
+                                                 <div
+                                                     class="d-flex justify-content-between align-items-center">
+                                                     <p class="fs-7 mb-0">Author: <?= $post['author'] ?></p>
+                                                     <a href="single.php?post=<?= $post['id'] ?>" class="btn btn-sm btn-dark">More</a>
+                                                 </div>
+                                             </div>
+                                         </div>
 
-                                 </div>
+                                     </div>
                                  <?php endforeach  ?>
                              </div>
                          <?php endif ?>
