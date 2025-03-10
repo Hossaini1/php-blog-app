@@ -1,7 +1,7 @@
  <!-- header -->
  <?php
 
-use Dom\Comment;
+    use Dom\Comment;
 
     include "./include/layout/header.php";
 
@@ -46,7 +46,7 @@ use Dom\Comment;
                                          <div>
                                              <?php
                                                 $categoryId = $post['category_id'];
-                                                $category = $db->query("SELECT * FROM `categories` WHERE id=$categoryId")->fetch()
+                                                $category = $db->query("SELECT * FROM `categories` WHERE id=$categoryId")->fetch();
                                                 ?>
                                              <span
                                                  class="badge bg-primary"><?= $category['title'] ?></span>
@@ -67,30 +67,60 @@ use Dom\Comment;
 
                          <!-- Comment Section -->
                          <div class="col">
+                            <?php 
+                            $invalidName = '';
+                            $invalidComment = '';
+                            $msg = '';
+
+                            if(isset($_POST['postComment'])){
+                                if (empty(trim($_POST['name']))) {
+                                    $invalidName = 'Name is required!';
+                                }else if (empty(trim($_POST['comment']))) {
+                                    $invalidComment = 'Comment is required!';
+                                }else{
+                                    $name = $_POST['name'];
+                                    $comment = $_POST['comment'];
+
+                                    $commentInsert = $db->prepare("INSERT INTO `comments` (name, comment , post_id) VALUES (:name, :comment , :post_id )");
+                                    $commentInsert->execute([':name'=> $name, 'comment' => $comment, 'post_id'=>$post['id']]);
+
+                                    $msg = "Commented successfuly!";
+                                }
+
+                            }
+                            
+                            ?>
                              <!-- Comment Form -->
                              <div class="card">
                                  <div class="card-body">
                                      <p class="fw-bold fs-5">
-                                         ارسال کامنت
+                                          Post a comment
                                      </p>
 
-                                     <form>
+                                     <form method="POST">
+                                        <p class="text-success"><?= $msg ?></p>
                                          <div class="mb-3">
-                                             <label class="form-label">نام</label>
+                                             <label class="form-label">Name</label>
                                              <input
+                                                 name="name"
                                                  type="text"
                                                  class="form-control" />
+                                                 <p class="form-text text-danger"><?= $invalidName ?></p>
                                          </div>
                                          <div class="mb-3">
-                                             <label class="form-label">متن کامنت</label>
+                                             <label class="form-label">Comment</label>
                                              <textarea
+                                                 name="comment"
                                                  class="form-control"
                                                  rows="3"></textarea>
+                                                 <p class="form-text text-danger"><?= $invalidComment ?></p>
+
                                          </div>
                                          <button
+                                             name="postComment"
                                              type="submit"
                                              class="btn btn-dark">
-                                             ارسال
+                                             Submit
                                          </button>
                                      </form>
                                  </div>
@@ -104,39 +134,38 @@ use Dom\Comment;
                                 $comments = $db->prepare("SELECT * FROM comments WHERE post_id = :id AND status = '1' ");
                                 $comments->execute(["id" => $postId]);
 
-                              
+
                                 ?>
                              <p class="fw-bold fs-6">Comments: <?= $comments->rowCount() ?></p>
-                             <?php if($comments->rowCount()>0): ?> 
+                             <?php if ($comments->rowCount() > 0): ?>
 
-                             <?php foreach ($comments as $comment) :?>
+                                 <?php foreach ($comments as $comment) : ?>
 
-                             <div class="card bg-light-subtle mb-3">
-                                 <div class="card-body">
-                                     <div
-                                         class="d-flex align-items-center">
-                                         <img
-                                         
-                                             src="./assets/images/profile.png"
-                                             width="45"
-                                             height="45"
-                                             alt="user-profle" 
-                                             class="card-title me-2 "/>
+                                     <div class="card bg-light-subtle mb-3">
+                                         <div class="card-body">
+                                             <div
+                                                 class="d-flex align-items-center">
+                                                 <img
+                                                     src="./assets/images/profile.png"
+                                                     width="45"
+                                                     height="45"
+                                                     alt="user-profle"
+                                                     class="card-title me-2 " />
 
-                                         <h5
-                                             class="card-title mb-0 text-secondary">
-                                               <?= $comment['name']; ?>
-                                         </h5>
+                                                 <h5
+                                                     class="card-title mb-0 text-secondary">
+                                                     <?= $comment['name']; ?>
+                                                 </h5>
+                                             </div>
+
+                                             <p class="card-text pt-3 pr-3">
+                                                 <?= $comment['comment']; ?>
+                                             </p>
+                                         </div>
                                      </div>
-
-                                     <p class="card-text pt-3 pr-3">
-                                         <?= $comment['comment']; ?>
-                                     </p>
-                                 </div>
-                             </div>
-                             <?php endforeach ?>
+                                 <?php endforeach ?>
                              <?php else : ?>
-                                <div class="alert alert-danger">There is no comment yet.</div>
+                                 <div class="alert alert-danger">There is no comment yet.</div>
                              <?php endif ?>
 
 
