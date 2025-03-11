@@ -1,9 +1,19 @@
+<?php 
+
+// include "../database/db.php";
+include(__DIR__ . "/../database/config.php");
+include(__DIR__ . "/../database/db.php");
+
+
+?>
+
+
 <!DOCTYPE html>
-<html dir="rtl" lang="fa">
+<html  lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>php tutorial || blog project || webprog.io</title>
+        <title>PHP Blog App</title>
 
         <link
             rel="stylesheet"
@@ -26,7 +36,7 @@
             <a
                 class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-5 text-white"
                 href="index.html"
-                >پنل ادمین</a
+                >Admin Panel</a
             >
 
             <button
