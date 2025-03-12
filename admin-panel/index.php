@@ -16,18 +16,25 @@ if (isset($_GET['entity']) && isset($_GET['action']) && isset($_GET['id'])) {
     // }
     // $query->execute(['id' => $id]);
 
-    switch ($entity) {
-        case "post":
-            $query = $db->prepare('DELETE FROM posts WHERE id = :id');
-            break;
-        case "comment":
-            $query = $db->prepare('DELETE FROM comments WHERE id = :id');
-            break;
-        case "category":
-            $query = $db->prepare('DELETE FROM categories WHERE id = :id');
-            break;
+    if ($action == "delete") {
+        switch ($entity) {
+            case "post":
+                $query = $db->prepare('DELETE FROM posts WHERE id = :id');
+                break;
+            case "comment":
+                $query = $db->prepare('DELETE FROM comments WHERE id = :id');
+                break;
+            case "category":
+                $query = $db->prepare("DELETE FROM categories WHERE id = :id");
+                break;
+        }
+        
+    }elseif($action == 'approve'){
+
+        $query = $db->prepare("UPDATE comments SET status = '1' WHERE id = :id ");
     }
     $query->execute(['id' => $id]);
+   
 }
 
 
@@ -130,9 +137,17 @@ $categories = $db->query("SELECT * FROM `categories` ORDER BY id DESC");
                                         <?= $comment['comment'] ?>
                                     </td>
                                     <td>
-                                        <a
-                                            href="#"
-                                            class="btn btn-sm btn-outline-dark disabled">Confirm</a>
+                                        <?php if($comment['status']): ?>
+                                        <button
+                                           
+                                            class="btn btn-sm btn-outline-dark disabled ">Confirmed</button>
+                                            <?php else: ?>
+
+                                            <a
+                                            href="index.php?entity=comment&action=approve&id=<?= $comment['id'] ?>"
+                                            class="btn btn-sm btn-outline-info">Confirm...</a>
+                                            <?php endif ?>
+
                                         <a
                                             href="index.php?entity=comment&action=delete&id=<?= $comment['id'] ?>"
                                             class="btn btn-sm btn-outline-danger">Delete</a>

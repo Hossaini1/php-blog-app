@@ -1,3 +1,11 @@
+
+<?php 
+
+$path = $_SERVER["REQUEST_URI"];
+
+?>
+
+
 <div
                     class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary"
                 >
@@ -21,25 +29,25 @@
                             <ul class="nav flex-column pe-3">
                                 <li class="nav-item">
                                     <a
-                                        class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2 text-secondary"
-                                        href="index.html"
+                                        class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2 <?= str_contains($path, "pages")? '':'text-secondary' ?>"
+                                        href="/php-blog-app/admin-panel/index.php"
                                     >
                                         <i
                                             class="bi bi-house-fill fs-4 text-secondary"
                                         ></i>
-                                        <span class="fw-bold">داشبورد</span>
+                                        <span class="fw-bold">Dashboard</span>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
                                     <a
-                                        class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2"
-                                        href="./pages/posts/index.html"
+                                        class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2  <?= str_contains($path, "posts")? 'text-secondary': '' ?>"
+                                        href="/php-blog-app/admin-panel/pages/posts/index.php"
                                     >
                                         <i
-                                            class="bi bi-file-earmark-image-fill fs-4 text-secondary"
+                                            class="bi bi-file-earmark-image-fill fs-4"
                                         ></i>
-                                        <span class="fw-bold">مقالات</span>
+                                        <span class="fw-bold">Posts</span>
                                     </a>
                                 </li>
 
@@ -52,7 +60,7 @@
                                             class="bi bi-folder-fill fs-4 text-secondary"
                                         ></i>
 
-                                        <span class="fw-bold">دسته بندی</span>
+                                        <span class="fw-bold">Categoris</span>
                                     </a>
                                 </li>
 
@@ -65,7 +73,7 @@
                                             class="bi bi-chat-left-text-fill fs-4 text-secondary"
                                         ></i>
 
-                                        <span class="fw-bold">کامنت ها</span>
+                                        <span class="fw-bold">Comments</span>
                                     </a>
                                 </li>
 
@@ -78,7 +86,7 @@
                                             class="bi bi-box-arrow-right fs-4 text-secondary"
                                         ></i>
 
-                                        <span class="fw-bold">خروج</span>
+                                        <span class="fw-bold">Exit</span>
                                     </a>
                                 </li>
                             </ul>
