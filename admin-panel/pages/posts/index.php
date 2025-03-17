@@ -1,117 +1,90 @@
-<?php 
-            include "../../include/layout/header.php";
-            ?>
+<?php
+include "../../include/layout/header.php";
 
-        <div class="container-fluid">
-            <div class="row">
-                <!-- Sidebar Section -->
-            <?php 
-            include "../../include/layout/sidebar.php";
-            ?>
+$posts = $db->query("SELECT * FROM `posts` ORDER BY id DESC");
 
-                <!-- Main Section -->
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                    <div
-                        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
-                    >
-                        <h1 class="fs-3 fw-bold">مقالات</h1>
+if (isset($_GET['action']) && isset($_GET['id'])) {
+    $id = $_GET['id'];
 
-                        <div class="btn-toolbar mb-2 mb-md-0">
-                            <a href="./create.html" class="btn btn-sm btn-dark">
-                                ایجاد مقاله
-                            </a>
-                        </div>
-                    </div>
+    $query = $db->prepare('DELETE FROM `posts` WHERE id = :id');
+    $query->execute([':id' => $id]);
 
-                     <!-- Posts -->
-                     <div class="mt-4">
-                        <div class="table-responsive small">
-                            <table class="table table-hover align-middle">
-                                <thead>
-                                    <tr>
-                                        <th>id</th>
-                                        <th>عنوان</th>
-                                        <th>نویسنده</th>
-                                        <th>عملیات</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th>1</th>
-                                        <td>لورم ایپسوم متن ساختگی</td>
-                                        <td>علی شیخ</td>
-                                        <td>
-                                            <a
-                                                href="./edit.html"
-                                                class="btn btn-sm btn-outline-dark"
-                                                >ویرایش</a
-                                            >
-                                            <a
-                                                href="#"
-                                                class="btn btn-sm btn-outline-danger"
-                                                >حذف</a
-                                            >
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>2</th>
-                                        <td>لورم ایپسوم متن</td>
-                                        <td>علی شیخ</td>
-                                        <td>
-                                            <a
-                                                href="./edit.html"
-                                                class="btn btn-sm btn-outline-dark"
-                                                >ویرایش</a
-                                            >
-                                            <a
-                                                href="#"
-                                                class="btn btn-sm btn-outline-danger"
-                                                >حذف</a
-                                            >
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>3</th>
-                                        <td>لورم ایپسوم متن ساختگی</td>
-                                        <td>علی شیخ</td>
-                                        <td>
-                                            <a
-                                                href="./edit.html"
-                                                class="btn btn-sm btn-outline-dark"
-                                                >ویرایش</a
-                                            >
-                                            <a
-                                                href="#"
-                                                class="btn btn-sm btn-outline-danger"
-                                                >حذف</a
-                                            >
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>4</th>
-                                        <td>لورم ایپسوم</td>
-                                        <td>علی شیخ</td>
-                                        <td>
-                                            <a
-                                                href="./edit.html"
-                                                class="btn btn-sm btn-outline-dark"
-                                                >ویرایش</a
-                                            >
-                                            <a
-                                                href="#"
-                                                class="btn btn-sm btn-outline-danger"
-                                                >حذف</a
-                                            >
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </main>
+    // redirect
+    header("Location:index.php");
+    exit();
+}
+
+
+
+
+?>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar Section -->
+        <?php
+        include "../../include/layout/sidebar.php";
+        ?>
+
+        <!-- Main Section -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="fs-3 fw-bold">Posts</h1>
+
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <a href="./create.php" class="btn btn-sm btn-dark">
+                        Create a post
+                    </a>
+                </div>
             </div>
-        </div>
 
-        <?php 
-            include "../../include/layout/footer.php";
-            ?>
+            <!-- Posts -->
+            <div class="mt-4">
+                <?php if ($posts->rowCount() > 0) : ?>
+                    <div class="table-responsive small">
+                        <table class="table table-hover align-middle">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Title</th>
+                                    <th>Author</th>
+                                    <th>Edit / Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($posts as $post) : ?>
+                                    <tr>
+                                        <th><?= $post['id'] ?></th>
+                                        <td><?= $post['title'] ?></td>
+                                        <td><?= $post['author'] ?></td>
+                                        <td>
+                                            <a
+                                                href="./edit.html"
+                                                class="btn btn-sm btn-outline-dark">Edit</a>
+                                            <a
+                                                href="index.php?action=delete&id=<?= $post['id'] ?>"
+                                                class="btn btn-sm btn-outline-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach ?>
+
+                            </tbody>
+                        </table>
+                    </div>
+                <?php else : ?>
+                    <div class="col">
+                        <div class="alert alert-danger">
+                            There is no post!
+                        </div>
+                    </div>
+                <?php endif ?>
+
+            </div>
+        </main>
+    </div>
+</div>
+
+<?php
+include "../../include/layout/footer.php";
+?>
