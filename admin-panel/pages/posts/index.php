@@ -14,9 +14,6 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
     exit();
 }
 
-
-
-
 ?>
 
 <div class="container-fluid">
@@ -34,7 +31,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <a href="./create.php" class="btn btn-sm btn-dark">
-                        Create a post
+                        Create post
                     </a>
                 </div>
             </div>
@@ -60,7 +57,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
                                         <td><?= $post['author'] ?></td>
                                         <td>
                                             <a
-                                                href="./edit.html"
+                                                href="./edit.php?action=edit&id=<?= $post['id'] ?>"
                                                 class="btn btn-sm btn-outline-dark">Edit</a>
                                             <a
                                                 href="index.php?action=delete&id=<?= $post['id'] ?>"
