@@ -209,4 +209,5 @@ $categories = $db->query("SELECT * FROM `categories` ORDER BY id DESC");
         </main>
     </div>
 </div>
+<!-- Footer -->
 <?php include "./include/layout/footer.php"; ?>

@@ -53,8 +53,8 @@ $path = $_SERVER["REQUEST_URI"];
 
                                 <li class="nav-item">
                                     <a
-                                        class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2"
-                                        href="./pages/categories/index.html"
+                                        class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2 <?= str_contains($path, "categories")? 'text-secondary': '' ?>"
+                                        href="/php-blog-app/admin-panel/pages/categories/index.php"
                                     >
                                         <i
                                             class="bi bi-folder-fill fs-4 text-secondary"
