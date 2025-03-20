@@ -82,6 +82,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
     </div>
 </div>
 
+<!-- Footer -->
 <?php
 include "../../include/layout/footer.php";
 ?>

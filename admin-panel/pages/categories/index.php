@@ -26,7 +26,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
                 <h1 class="fs-3 fw-bold">Categories</h1>
 
                 <div class="btn-toolbar mb-2 mb-md-0">
-                    <a href="./create.html" class="btn btn-sm btn-dark">
+                    <a href="./create.php" class="btn btn-sm btn-dark">
                         Create category
                     </a>
                 </div>
@@ -51,7 +51,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
                                         <td><?= $category['title'] ?></td>
                                         <td>
                                             <a
-                                                href="./edit.html"
+                                                href="./edit.php?action=edit&id=<?= $category['id'] ?>"
                                                 class="btn btn-sm btn-outline-dark">Edit</a>
                                             <a
                                                 href="index.php?action=delete&id=<?= $category['id'] ?>"
