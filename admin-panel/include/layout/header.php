@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // include "../database/db.php";
 include(__DIR__ . "/../database/config.php");
@@ -7,6 +8,15 @@ include(__DIR__ . "/../database/db.php");
 // var_dump($_SERVER["REQUEST_URI"]);
 // var_dump(str_contains($_SERVER["REQUEST_URI"], "pages"))
 $path = $_SERVER["REQUEST_URI"];
+
+if (!isset($_SESSION['email'])) {
+    if (str_contains($path, 'pages')) {
+        header("Location:../auth/login.php?err_msg=Please login");
+    } else {
+        header("Location:./pages/auth/login.php?err_msg=Please login");
+    }
+    exit();
+}
 
 ?>
 
@@ -17,7 +27,7 @@ $path = $_SERVER["REQUEST_URI"];
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PHP Blog App</title>
+    <title>Admin-Panel Dashboard</title>
 
     <link
         rel="stylesheet"
